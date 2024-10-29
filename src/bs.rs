@@ -46,4 +46,12 @@ impl Bs {
             .send().await?.status().to_string())
 
     }
+
+    pub fn get_sync(&self, page: &str) -> Result<String, Box<dyn std::error::Error>> {
+        Ok(tokio::runtime::Runtime::new().unwrap().block_on(self.get(page))?)
+    }
+
+    pub fn post_sync(&self, page: &str, text: &str) -> Result<String, Box<dyn std::error::Error>> {
+        Ok(tokio::runtime::Runtime::new().unwrap().block_on(self.post(page, text))?)
+    }
 }

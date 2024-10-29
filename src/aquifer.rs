@@ -57,6 +57,16 @@ impl Aquifer {
         let mapping = self.incubator.get_mapping(&*self.host, namespace, page);
         mapping
     }
+
+    pub fn set_text_sync(&mut self, namespace: &str, page: &str, text:&str)
+        -> Result<String, Box<dyn std::error::Error>> {
+        Ok(tokio::runtime::Runtime::new().unwrap().block_on(self.set_text(namespace, page, text))?)
+    }
+
+    pub fn get_text_sync(&mut self, namespace: &str, page: &str)
+        -> Result<String, Box<dyn std::error::Error>> {
+        Ok(tokio::runtime::Runtime::new().unwrap().block_on(self.get_text(namespace, page))?)
+    }
 }
 
 
