@@ -1,5 +1,5 @@
-use whitespace::{aquifer, bs, incubation};
-use clap::{Parser, Subcommand};
+use whitespace::{aquifer, bs};
+use clap::{Parser};
 use std::io::{stdin, Write};
 
 #[derive(Parser)]
